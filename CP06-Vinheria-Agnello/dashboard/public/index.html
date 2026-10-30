@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#321a23">
+  <title>Vinheria Agnello — Adega em tempo real</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">VA</span><span>Vinheria Agnello</span></div>
+      <span class="project-tag">Monitoramento da adega · CP06</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="page-heading">
+      <div>
+        <h1>Condições da adega</h1>
+        <p>Leituras do ESP32 físico, consultadas no FIWARE.</p>
+      </div>
+      <div class="status-group">
+        <span id="status" class="status status-loading" role="status">Consultando servidor</span>
+        <span id="lastUpdate" class="last-update">—</span>
+      </div>
+    </div>
+
+    <div id="notice" class="notice" role="alert" hidden></div>
+
+    <section class="readings" aria-label="Leituras mais recentes">
+      <article class="reading">
+        <div class="reading-head"><span class="reading-dot temp"></span><h2>Temperatura</h2></div>
+        <p class="reading-value"><span id="temperature">—</span><span class="unit">°C</span></p>
+        <p class="reading-note">Ambiente da adega</p>
+      </article>
+      <article class="reading">
+        <div class="reading-head"><span class="reading-dot humidity"></span><h2>Umidade relativa</h2></div>
+        <p class="reading-value"><span id="relativeHumidity">—</span><span class="unit">%</span></p>
+        <p class="reading-note">Armazenamento dos vinhos</p>
+      </article>
+      <article class="reading">
+        <div class="reading-head"><span class="reading-dot light"></span><h2>Luminosidade</h2></div>
+        <p class="reading-value"><span id="illuminance">—</span><span class="unit">lux*</span></p>
+        <p class="reading-note">Estimativa após calibração do LDR</p>
+      </article>
+    </section>
+
+    <section class="history-section" aria-labelledby="historyTitle">
+      <div class="section-head">
+        <div><h2 id="historyTitle">Histórico de leituras</h2><p>Dados armazenados no STH-Comet, recebidos do Orion.</p></div>
+        <div class="tools">
+          <label for="period">Período</label>
+          <select id="period"><option value="24h">Últimas 24 horas</option><option value="7d">Últimos 7 dias</option><option value="30d">Últimos 30 dias</option></select>
+          <button id="refresh" type="button" class="button secondary">Atualizar</button>
+          <button id="export" type="button" class="button primary" disabled>Exportar CSV</button>
+        </div>
+      </div>
+      <div class="metric-tabs" role="group" aria-label="Variável do gráfico">
+        <button type="button" data-metric="temperature" class="active" aria-pressed="true">Temperatura</button>
+        <button type="button" data-metric="relativeHumidity" aria-pressed="false">Umidade</button>
+        <button type="button" data-metric="illuminance" aria-pressed="false">Luminosidade</button>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-topline"><strong id="chartLabel">Temperatura · °C</strong><span id="sampleCount">—</span></div>
+        <div class="chart-wrap"><svg id="chart" viewBox="0 0 900 280" role="img" aria-labelledby="chartLabel chartDescription"></svg></div>
+        <p id="chartDescription" class="chart-description">Aguardando dados históricos.</p>
+      </div>
+    </section>
+
+    <section class="table-section" aria-labelledby="tableTitle">
+      <div class="section-head"><div><h2 id="tableTitle">Registros recentes</h2><p>Horário de recebimento no histórico do FIWARE.</p></div></div>
+      <div class="table-scroll"><table><thead><tr><th scope="col">Data e hora</th><th scope="col">Variável</th><th scope="col" class="numeric">Valor</th></tr></thead><tbody id="records"><tr><td colspan="3" class="empty-row">Aguardando leituras do servidor.</td></tr></tbody></table></div>
+    </section>
+
+    <footer><span id="entityId">Entidade FIWARE: —</span><span>* Lux é aproximado; calibre o LDR físico antes de interpretar o valor.</span></footer>
+  </main>
+</body>
+</html>

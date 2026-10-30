@@ -1,0 +1,7 @@
+{
+  "fiwareHost": "3.135.234.101",
+  "service": "vinheria571746cp06",
+  "servicePath": "/",
+  "entityId": "urn:ngsi-ld:Device:vinheria-cp06-571746",
+  "entityType": "Device"
+}

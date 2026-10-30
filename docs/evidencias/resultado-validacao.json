@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "verifiedAt": "2026-10-30T14:01:41.327Z",
+  "source": {
+    "mode": "fiware",
+    "transport": "http"
+  },
+  "latest": {
+    "temperature": 18,
+    "relativeHumidity": 65,
+    "illuminance": 999.5
+  },
+  "observedAt": "2026-10-30T14:00:56.000Z",
+  "historicalSamples": {
+    "temperature": 10,
+    "relativeHumidity": 10,
+    "illuminance": 11
+  },
+  "csvRows": 31,
+  "checks": [
+    "DHT22 e LDR alterados no Wokwi",
+    "MQTT com timestamp",
+    "Orion NGSIv2",
+    "STH-Comet: valores iniciais e alterados",
+    "CSV com as três variáveis",
+    "Smart Data Model Device"
+  ]
+}

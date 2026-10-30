@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "author": "Vinheria Agnello - CP06 Wokwi",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -100,
+      "left": -180,
+      "attrs": {
+        "temperature": "13",
+        "humidity": "70"
+      }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 100,
+      "left": -200,
+      "attrs": {
+        "lux": "100"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "dht1:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "dht1:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "dht1:SDA",
+      "esp:D15",
+      "green",
+      []
+    ],
+    [
+      "ldr1:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "ldr1:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "ldr1:AO",
+      "esp:D34",
+      "green",
+      []
+    ],
+    [
+      "esp:TX0",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX0",
+      "$serialMonitor:TX",
+      "",
+      []
+    ]
+  ],
+  "serialMonitor": {
+    "display": "always"
+  },
+  "dependencies": {}
+}
